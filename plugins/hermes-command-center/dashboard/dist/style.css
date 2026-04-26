@@ -1,0 +1,244 @@
+/* Hermes Command Center plugin styles
+ *
+ * IMPORTANT: use the shadcn `--color-*` namespace, NOT the raw layer vars.
+ * Hermes Teal sets `--foreground` with alpha 0 (transparent) — those raw
+ * layer vars are for warm-glow effects, not text. Real text uses
+ * `--color-foreground` (mapped to `--midground` per index.css).
+ *
+ * Cockpit-only flair (clip-path bevels, scanline, grid texture) is scoped
+ * to [data-layout-variant="cockpit"] so Chronos Forge keeps its look while
+ * every other theme renders with proper contrast.
+ */
+
+/* ---------- Base layer: theme-agnostic ---------- */
+
+.hcc-root {
+  position: relative;
+  z-index: 1;
+}
+
+.hcc-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 32%, var(--color-border));
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 30%),
+    radial-gradient(circle at 84% 8%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 36%),
+    var(--color-card);
+  color: var(--color-card-foreground);
+}
+
+.hcc-kpi {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 26%, var(--color-border));
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--color-primary) 6%, var(--color-card)),
+      var(--color-card));
+  color: var(--color-card-foreground);
+}
+
+.hcc-kpi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--color-primary) 18%, transparent),
+    transparent 28%,
+    transparent 72%,
+    color-mix(in srgb, var(--color-accent) 14%, transparent));
+  opacity: 0.6;
+}
+
+.hcc-label {
+  color: var(--color-muted-foreground);
+  font-family: var(--theme-font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hcc-value {
+  color: var(--color-foreground);
+  font-family: var(--theme-font-display, system-ui, sans-serif);
+  letter-spacing: 0.06em;
+}
+
+.hcc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 55%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 22%, var(--color-card));
+  color: var(--color-foreground);
+  padding: 0.18rem 0.5rem;
+  font-family: var(--theme-font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hcc-pill.hot {
+  border-color: color-mix(in srgb, var(--color-accent) 65%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 28%, var(--color-card));
+  color: var(--color-foreground);
+}
+
+.hcc-pill.danger {
+  border-color: color-mix(in srgb, var(--color-destructive) 70%, var(--color-border));
+  background: color-mix(in srgb, var(--color-destructive) 35%, var(--color-card));
+  color: var(--color-destructive-foreground);
+}
+
+.hcc-bar {
+  height: 0.42rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.hcc-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+.hcc-feed {
+  max-height: 22rem;
+  overflow: auto;
+}
+
+.hcc-feed-line {
+  border-left: 2px solid color-mix(in srgb, var(--color-accent) 65%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-card));
+  padding: 0.5rem 0.65rem;
+  font-family: var(--theme-font-mono, ui-monospace, monospace);
+  font-size: 0.76rem;
+  color: var(--color-foreground);
+}
+
+.hcc-table-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border));
+}
+
+.hcc-table-row:last-child {
+  border-bottom: 0;
+}
+
+.hcc-slot {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--color-primary) 4%, var(--color-card)),
+    var(--color-card));
+  color: var(--color-card-foreground);
+  padding: 0.75rem;
+}
+
+.hcc-mini-btn {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 45%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-card));
+  color: var(--color-foreground);
+  font-family: var(--theme-font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hcc-mini-btn:hover {
+  background: color-mix(in srgb, var(--color-primary) 32%, var(--color-card));
+}
+
+.hcc-platform,
+.hcc-gridbox {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-card));
+  color: var(--color-card-foreground);
+  padding: 0.65rem;
+}
+
+.hcc-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+@keyframes hcc-scan {
+  0% { left: -55%; }
+  42% { left: 115%; }
+  100% { left: 115%; }
+}
+
+/* ---------- Cockpit-only flair: clip-path bevels, scanline, grid ---------- */
+
+[data-layout-variant="cockpit"] .hcc-hero {
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+[data-layout-variant="cockpit"] .hcc-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 50% 35%, black, transparent 78%);
+}
+
+[data-layout-variant="cockpit"] .hcc-hero::after {
+  content: "";
+  position: absolute;
+  width: 45%;
+  height: 120%;
+  top: -10%;
+  left: -55%;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--color-primary) 22%, transparent),
+    transparent);
+  transform: skewX(-18deg);
+  animation: hcc-scan 5.5s ease-in-out infinite;
+}
+
+[data-layout-variant="cockpit"] .hcc-kpi {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+[data-layout-variant="cockpit"] .hcc-pill,
+[data-layout-variant="cockpit"] .hcc-mini-btn {
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+[data-layout-variant="cockpit"] .hcc-slot {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+[data-layout-variant="cockpit"] .hcc-platform,
+[data-layout-variant="cockpit"] .hcc-gridbox {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+[data-layout-variant="cockpit"] .hcc-bar > span {
+  background: linear-gradient(90deg, #50e6ff, #f6c96a, #ff7e24);
+}
+
+[data-layout-variant="cockpit"] .hcc-overlay {
+  opacity: 0.28;
+  background:
+    linear-gradient(rgba(255,255,255,0.025) 50%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(80, 230, 255, 0.10), transparent 50%);
+  background-size: 100% 4px, 100% 100%;
+}

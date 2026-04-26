@@ -1,0 +1,19 @@
+{
+  "name": "hermes-command-center",
+  "label": "Command Center",
+  "description": "A tactical ops cockpit for Hermes Agent: live gateway status, session telemetry, token burn, model usage, skills/toolsets, cron controls, gateway platforms, and error feed.",
+  "icon": "Shield",
+  "version": "1.1.0",
+  "tab": {
+    "path": "/command-center",
+    "position": "after:sessions"
+  },
+  "slots": [
+    "sidebar",
+    "header-right",
+    "overlay"
+  ],
+  "entry": "dist/index.js",
+  "css": "dist/style.css",
+  "api": "plugin_api.py"
+}

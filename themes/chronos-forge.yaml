@@ -1,0 +1,158 @@
+name: chronos-forge
+label: Chronos Forge
+description: Tactical cockpit skin for Hermes operators. Amber command glow, cyan telemetry, compact controls, scanline texture, and plugin-ready HUD slots.
+
+palette:
+  background: { hex: "#03060d", alpha: 1 }
+  midground: { hex: "#f6c96a", alpha: 1 }
+  foreground: { hex: "#50e6ff", alpha: 1 }
+  warmGlow: "rgba(255, 126, 36, 0.34)"
+  noiseOpacity: 0.9
+
+typography:
+  fontSans: '"Rajdhani", "Inter", system-ui, sans-serif'
+  fontMono: '"JetBrains Mono", "Share Tech Mono", ui-monospace, monospace'
+  fontDisplay: '"Orbitron", "Rajdhani", system-ui, sans-serif'
+  fontUrl: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+  baseSize: "14px"
+  lineHeight: "1.5"
+  letterSpacing: "0.015em"
+
+layout:
+  radius: "0.125rem"
+  density: compact
+layoutVariant: cockpit
+
+assets:
+  bg: "radial-gradient(circle at 15% 12%, rgba(80, 230, 255, 0.18), transparent 30%), radial-gradient(circle at 85% 8%, rgba(255, 126, 36, 0.16), transparent 34%), radial-gradient(circle at 70% 82%, rgba(246, 201, 106, 0.10), transparent 38%), linear-gradient(135deg, #03060d 0%, #07111f 52%, #120805 100%)"
+  hero: "radial-gradient(circle at center, rgba(80,230,255,0.28), rgba(246,201,106,0.08) 35%, transparent 62%)"
+  logo: "linear-gradient(135deg, #50e6ff, #f6c96a 48%, #ff7e24)"
+  crest: "radial-gradient(circle, rgba(80,230,255,0.34), rgba(246,201,106,0.18) 48%, transparent 70%)"
+  sidebar: "linear-gradient(180deg, rgba(80,230,255,0.12), rgba(255,126,36,0.08), transparent)"
+  header: "linear-gradient(90deg, rgba(3,6,13,0.92), rgba(8,20,35,0.88), rgba(3,6,13,0.92))"
+  custom:
+    command-grid: "linear-gradient(rgba(80,230,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(80,230,255,0.08) 1px, transparent 1px)"
+    amber-radar: "conic-gradient(from 210deg, rgba(246,201,106,0.0), rgba(246,201,106,0.34), rgba(80,230,255,0.0), rgba(246,201,106,0.0))"
+
+componentStyles:
+  page:
+    background: "var(--theme-asset-bg)"
+  backdrop:
+    background: "radial-gradient(circle at 50% 0%, rgba(80,230,255,0.10), transparent 42%)"
+  header:
+    background: "var(--theme-asset-header)"
+    borderColor: "rgba(80,230,255,0.26)"
+    boxShadow: "0 0 30px rgba(80,230,255,0.08), inset 0 -1px rgba(246,201,106,0.18)"
+  sidebar:
+    background: "linear-gradient(180deg, rgba(3,6,13,0.96), rgba(6,14,25,0.94)), var(--theme-asset-sidebar)"
+    borderColor: "rgba(80,230,255,0.22)"
+    boxShadow: "inset -1px 0 rgba(246,201,106,0.16)"
+  card:
+    background: "linear-gradient(180deg, rgba(5,12,22,0.91), rgba(3,6,13,0.86))"
+    borderColor: "rgba(80,230,255,0.28)"
+    boxShadow: "0 0 0 1px rgba(80,230,255,0.08), 0 18px 48px rgba(0,0,0,0.42), inset 0 1px rgba(246,201,106,0.10)"
+    clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))"
+  tab:
+    background: "linear-gradient(90deg, rgba(80,230,255,0.10), rgba(246,201,106,0.08))"
+    borderColor: "rgba(80,230,255,0.24)"
+    clipPath: "polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)"
+  progress:
+    background: "linear-gradient(90deg, #50e6ff, #f6c96a, #ff7e24)"
+  badge:
+    background: "rgba(246,201,106,0.12)"
+    borderColor: "rgba(246,201,106,0.34)"
+    color: "#ffe7a8"
+  footer:
+    background: "linear-gradient(90deg, rgba(3,6,13,0.92), rgba(8,20,35,0.88), rgba(3,6,13,0.92))"
+
+colorOverrides:
+  card: "rgba(4, 10, 19, 0.88)"
+  cardForeground: "#e8faff"
+  popover: "rgba(4, 10, 19, 0.96)"
+  popoverForeground: "#e8faff"
+  primary: "#50e6ff"
+  primaryForeground: "#031018"
+  secondary: "rgba(246,201,106,0.16)"
+  secondaryForeground: "#ffe7a8"
+  muted: "rgba(142, 177, 196, 0.12)"
+  mutedForeground: "#8eb1c4"
+  accent: "rgba(255,126,36,0.20)"
+  accentForeground: "#ffd2a0"
+  destructive: "#ff5b64"
+  destructiveForeground: "#fff1f2"
+  border: "rgba(80,230,255,0.24)"
+  input: "rgba(80,230,255,0.18)"
+  ring: "#f6c96a"
+
+customCSS: |
+  body {
+    background: var(--theme-asset-bg) fixed;
+    text-rendering: geometricPrecision;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.025) 50%, transparent 50%),
+      radial-gradient(circle at 50% 0%, rgba(80,230,255,0.10), transparent 50%);
+    background-size: 100% 3px, 100% 100%;
+    mix-blend-mode: screen;
+    opacity: 0.55;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: var(--theme-asset-custom-command-grid);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at 50% 35%, black, transparent 72%);
+    opacity: 0.36;
+    animation: chronos-grid-drift 26s linear infinite;
+  }
+
+  h1, h2, h3, .font-display {
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+
+  button, a, [role="tab"], [data-slot="button"] {
+    transition: box-shadow 150ms ease, transform 150ms ease, border-color 150ms ease;
+  }
+
+  button:hover, a:hover, [role="tab"]:hover, [data-slot="button"]:hover {
+    box-shadow: 0 0 0 1px rgba(80,230,255,0.24), 0 0 24px rgba(80,230,255,0.12);
+  }
+
+  [data-slot="card"]::before,
+  .rounded-lg.border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(80,230,255,0.22), transparent 28%, transparent 72%, rgba(246,201,106,0.16)),
+      linear-gradient(180deg, rgba(255,255,255,0.04), transparent 32%);
+    opacity: 0.28;
+  }
+
+  [data-slot="card"], .rounded-lg.border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: rgba(246,201,106,0.34);
+    color: #fff9e8;
+  }
+
+  @keyframes chronos-grid-drift {
+    from { background-position: 0 0; }
+    to { background-position: 44px 44px; }
+  }
