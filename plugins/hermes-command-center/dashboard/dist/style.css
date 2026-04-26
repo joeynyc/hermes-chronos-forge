@@ -173,9 +173,13 @@
 }
 
 @keyframes hcc-scan {
-  0% { left: -55%; }
-  42% { left: 115%; }
-  100% { left: 115%; }
+  0%   { transform: translate3d(-122%, 0, 0) skewX(-18deg); }
+  42%  { transform: translate3d(256%, 0, 0)  skewX(-18deg); }
+  100% { transform: translate3d(256%, 0, 0)  skewX(-18deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-layout-variant="cockpit"] .hcc-hero::after { animation: none; }
 }
 
 /* ---------- Cockpit-only flair: clip-path bevels, scanline, grid ---------- */
@@ -203,13 +207,14 @@
   width: 45%;
   height: 120%;
   top: -10%;
-  left: -55%;
+  left: 0;
   pointer-events: none;
   background: linear-gradient(90deg,
     transparent,
     color-mix(in srgb, var(--color-primary) 22%, transparent),
     transparent);
-  transform: skewX(-18deg);
+  transform: translate3d(-122%, 0, 0) skewX(-18deg);
+  will-change: transform;
   animation: hcc-scan 5.5s ease-in-out infinite;
 }
 

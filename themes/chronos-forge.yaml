@@ -107,13 +107,17 @@ customCSS: |
   body::after {
     content: "";
     position: fixed;
-    inset: 0;
+    top: -44px;
+    left: -44px;
+    width: calc(100% + 44px);
+    height: calc(100% + 44px);
     pointer-events: none;
     z-index: 0;
     background-image: var(--theme-asset-custom-command-grid);
     background-size: 44px 44px;
     mask-image: radial-gradient(circle at 50% 35%, black, transparent 72%);
     opacity: 0.36;
+    will-change: transform;
     animation: chronos-grid-drift 26s linear infinite;
   }
 
@@ -153,6 +157,10 @@ customCSS: |
   }
 
   @keyframes chronos-grid-drift {
-    from { background-position: 0 0; }
-    to { background-position: 44px 44px; }
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(44px, 44px, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::after { animation: none; }
   }
