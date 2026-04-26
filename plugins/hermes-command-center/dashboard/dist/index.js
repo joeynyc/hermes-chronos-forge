@@ -148,7 +148,7 @@
             status.gateway_pid ? h("span", { className: "hcc-pill" }, "PID " + status.gateway_pid) : null
           ),
           h("h1", { className: "hcc-value text-3xl font-black tracking-[0.12em] md:text-5xl" }, "Command Center"),
-          h("p", { className: "mt-3 max-w-3xl text-sm text-muted-foreground md:text-base" }, "Live mission telemetry for sessions, models, token burn, skills, toolsets, cron jobs, gateway state, and recent errors. Built to pair with the Chronos Forge cockpit theme.")
+          h("p", { className: "mt-3 max-w-3xl text-sm text-muted-foreground md:text-base" }, "Live mission telemetry for sessions, models, token burn, skills, toolsets, cron jobs, gateway state, and recent errors. Adapts to your active Hermes theme — full cockpit flair on Chronos Forge.")
         ),
         h("div", { className: "flex flex-wrap gap-2" },
           h(Button, { onClick: props.onRefresh, disabled: props.loading, variant: "outline", className: "hcc-value" }, props.loading ? "Refreshing" : "Refresh"),
