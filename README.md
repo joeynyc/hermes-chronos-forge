@@ -1,5 +1,7 @@
 # Chronos Forge + Hermes Command Center
 
+![Chronos Forge + Hermes Command Center](assets/hero.png)
+
 A matched dashboard theme and ops-cockpit plugin for [Hermes Agent](https://github.com/NousResearch/hermes-agent). Drop-in install, no Hermes fork required.
 
 - **Theme**: `Chronos Forge` — tactical cockpit skin (amber command glow, cyan telemetry, scanline texture, compact controls).
